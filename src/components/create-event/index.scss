@@ -1,0 +1,72 @@
+.create-event {
+  font-family: 'Trebuchet', sans-serif;
+  width: 600px;
+  height: 350px;
+  margin: auto;
+  font-size: 20px;
+  padding-top: 100px;
+}
+form {
+  padding: 10px;
+  margin: auto;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: rgba(156, 156, 126, 0.4);
+}
+
+label {
+  width: 30%;
+  display: inline-block;
+  margin: 6px;
+  padding-bottom: 20px;
+}
+
+input {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 30%;
+  height: 30px;
+}
+
+select {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 30%;
+  height: 30px;
+}
+#participants {
+  height: 70px;
+}
+.buttons {
+  display: block;
+  text-align: right;
+}
+
+.toast {
+  width: 100%;
+  margin: auto;
+  padding: 10px;
+  visibility: hidden;
+  background-color: rgba(255, 0, 0, 0.329);
+  color: #fff;
+  border-radius: 10px;
+  button {
+    float: right;
+    width: 25px;
+    height: 25px;
+    color: red;
+    font-weight: bold;
+    background-color: #ffffff81;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+}
+.empty-field {
+  border: 2px solid red;
+}

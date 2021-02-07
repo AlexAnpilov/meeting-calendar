@@ -1,0 +1,171 @@
+.calendar-component {
+  font-family: 'Trebuchet', sans-serif;
+  width: 1200px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  h1 {
+    margin-bottom: 5px;
+  }
+
+  .filter {
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: 5px;
+  }
+}
+
+.filter {
+  %button-sizes {
+    width: 150px;
+    height: 30px;
+  }
+  select {
+    @extend %button-sizes;
+  }
+  button {
+    @extend %button-sizes;
+  }
+}
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-areas:
+    'w w w w w w'
+    't e e e e e'
+    't e e e e e'
+    't e e e e e'
+    't e e e e e'
+    't e e e e e'
+    't e e e e e'
+    't e e e e e'
+    't e e e e e'
+    't e e e e e';
+  width: 1200px;
+  height: 100%;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.weekdays {
+  grid-area: w;
+  display: flex;
+  background-color: rgba(104, 107, 103, 0.815);
+  height: 50px;
+  margin-bottom: 0;
+  .day,
+  .time-header {
+    width: 200px;
+    padding: 15px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid black;
+  }
+}
+
+.time-column {
+  grid-area: t;
+  width: 200px;
+  background-color: rgba(76, 78, 75, 0.13);
+  .time {
+    border: 1px solid black;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+  }
+}
+
+#events-body {
+  grid-area: e;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  div {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    width: 200px;
+    border: 1px solid black;
+  }
+
+  .active-event {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    overflow-wrap: break-word;
+    background-color: rgba(31, 139, 16, 0.795);
+    padding-top: 5px;
+    padding-left: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid black;
+    vertical-align: middle;
+  }
+}
+.delete-button {
+  display: block;
+  visibility: hidden;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 15px;
+  right: 0;
+  padding: 0;
+  color: rgb(214, 14, 14);
+  font-weight: bolder;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.active-event:hover {
+  .delete-button {
+    visibility: visible;
+  }
+}
+.delete-button:focus {
+  outline: none;
+  background-color: rgba(197, 100, 100, 0.664);
+}
+#delete-message {
+  display: none;
+  position: absolute;
+  top: 220px;
+  left: 485px;
+  background-color: rgba(104, 107, 103, 0.89);
+  width: 400px;
+  height: 200px;
+  z-index: 10000;
+  font-weight: 600;
+  overflow-wrap: break-word;
+  border: 1px solid black;
+  border-radius: 10px;
+  p {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 15px;
+  }
+  div {
+    position: absolute;
+    bottom: 5%;
+    text-align: center;
+    width: 100%;
+  }
+  button {
+    width: 50px;
+    height: 30px;
+    margin-right: 70px;
+    margin-left: 70px;
+  }
+}

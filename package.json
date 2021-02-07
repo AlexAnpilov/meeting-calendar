@@ -1,0 +1,49 @@
+{
+  "name": "meeting-calendar",
+  "version": "1.0.0",
+  "description": "Simple meeting calendar for 5 days",
+  "main": "index.js",
+  "devDependencies": {
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "babel-preset-airbnb": "^5.0.0",
+    "babel-preset-env": "^1.7.0",
+    "cli": "^1.0.1",
+    "css-loader": "^5.0.1",
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-babel": "^0.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-class-property": "^1.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^11.0.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.21.1",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "AlexAnpilov",
+  "license": "",
+  "scripts": {
+    "dist": "webpack",
+    "watch": "webpack -w",
+    "server": "webpack serve",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
+  },
+  "dependencies": {
+    "sass": "^1.32.6"
+  }
+}
