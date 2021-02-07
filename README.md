@@ -5,6 +5,7 @@ A simple meeting planning calendar for a meeting room in your office.
 -
 To install the project, please download it or clone, after load node modules of the project use command:
 -
+
 npm install
 -
 To start the server: 
