@@ -7,11 +7,11 @@ A simple meeting planning calendar for a meeting room in your office.
 To install the project, please download it or clone, after load node modules of the project use command:
 
 
-npm install
+***npm install***
 
 To start the server: 
 
-**npm run server**
+***npm run server***
 
 ### This project uses technologies:
 
@@ -22,4 +22,4 @@ To start the server:
 [Babel](https://babeljs.io/) - JavaScript compiler.
 
 JavaScript code lintered with [airbnb/javascript](https://github.com/airbnb/javascript) style guide.
-(To check it use command: **npm run lint**)
+(To check it use command: ***npm run lint***)
