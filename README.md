@@ -1,4 +1,4 @@
-###h3 Description 
+### h3Description 
 A simple meeting planning calendar for a meeting room in your office.
 
 ###Getting start
