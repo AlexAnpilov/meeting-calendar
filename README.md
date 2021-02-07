@@ -1,6 +1,6 @@
 # Description.
 A simple meeting planning calendar for a meeting room in your office.
-
+![main page](https://ibb.co/3cdg78M)
 ## Getting start.
 
 To install the project, please download it or clone, after load node modules of the project use command:
