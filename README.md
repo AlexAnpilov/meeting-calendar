@@ -1,6 +1,6 @@
 # Description.
 A simple meeting planning calendar for a meeting room in your office.
-
+![main](https://user-images.githubusercontent.com/71491525/107159187-206e2680-6997-11eb-9ec3-b3dff49ca156.png)
 ## Getting start.
 
 To install the project, please download it or clone, after load node modules of the project use command:
