@@ -1,6 +1,6 @@
 # Description.
 A simple meeting planning calendar for a meeting room in your office.
-
+![main](file:///C:/Users/38095/Desktop/main.png)
 ## Getting start.
 
 To install the project, please download it or clone, after load node modules of the project use command:
