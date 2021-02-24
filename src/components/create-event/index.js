@@ -1,4 +1,4 @@
-import CalendarEvent from '../../models';
+import CalendarEvent from '../../CalendarEvent';
 import { getField, setField } from '../../store/index';
 
 export default class CreateEvent {

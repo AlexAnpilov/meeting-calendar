@@ -1,4 +1,12 @@
 import eventEmitter from '../EventEmitter';
+import Admin from '../Admin';
+import User from '../User';
+
+const participants = [
+  new Admin('Alex'),
+  new User('Anastasia'),
+  new User('Dmitriy'),
+];
 
 let store = {};
 
@@ -22,16 +30,7 @@ export const initStore = () => {
       '17:00',
       '18:00',
     ],
-    people: [{
-      id: 1,
-      name: 'Alex',
-    }, {
-      id: 2,
-      name: 'Anastasia',
-    }, {
-      id: 3,
-      name: 'Dmitriy',
-    }],
+    people: [...participants],
 
     events: [],
     componentForRenderName: 'calendar',

@@ -1,6 +1,31 @@
 import { getField, setField } from '../../store/index';
 
 export default class Calendar {
+  static adminMode = null;
+
+  createLoginWindow() {
+    const people = getField('people');
+    this.options = '';
+    people.forEach((human) => {
+      this.options += `<option value='${human.id}'>${human.name}</option>`;
+    });
+    if (Calendar.adminMode !== null) {
+      this.style = 'display:none;';
+    }
+    if (Calendar.adminMode === false) {
+      const deleteEventButtons = document.querySelectorAll('.delete-button');
+      deleteEventButtons.style.display = 'none';
+    }
+
+    return `
+    <div id="login-window" style=${this.style}>
+    <h1>Please authorise</h1>
+    <select id="login-select">${this.options}</select>
+    <div><button id="login-button">Confirm</button></div>
+    </div>
+    `;
+  }
+
   createFilterSelect() {
     const people = getField('people');
     const filterSelectedId = getField('filterSelectedId');
@@ -58,6 +83,7 @@ export default class Calendar {
     const newEventButton = document.getElementById('new-event');
     const filterPeopleSelect = document.getElementById('participants-filter');
     const deleteEventButtons = document.querySelectorAll('.delete-button');
+    const loginButton = document.getElementById('login-button');
     newEventButton.addEventListener('click', () => setField('componentForRenderName', 'createEvent'));
     for (let i = 0; i < deleteEventButtons.length; i += 1) {
       deleteEventButtons[i].addEventListener('click', this.deleteEvent);
@@ -65,6 +91,21 @@ export default class Calendar {
     filterPeopleSelect.addEventListener('change', (event) => {
       setField('filterSelectedId', +event.target.value);
     });
+    loginButton.addEventListener('click', this.loginEvent);
+  }
+
+  loginEvent() {
+    this.people = getField('people');
+    const loginWindow = document.getElementById('login-window');
+    const selectedLoginHumanId = document.getElementById('login-select').value;
+    const newEventButton = document.getElementById('new-event');
+    if (!this.people.find((human) => human.id === +selectedLoginHumanId && human.admin)) {
+      newEventButton.style.display = 'none';
+      Calendar.adminMode = false;
+    } else {
+      Calendar.adminMode = true;
+    }
+    loginWindow.style.display = 'none';
   }
 
   deleteEvent(browserEvent) {
@@ -101,6 +142,7 @@ export default class Calendar {
   render() {
     return `
 <div class= "calendar-component">
+    ${this.createLoginWindow()}
     <div class="header">
         <h1>Calendar</h1>
         <div class="filter">
