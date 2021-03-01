@@ -38,6 +38,7 @@ select {
   box-sizing: border-box;
   width: 30%;
   height: 30px;
+  cursor: pointer;
 }
 #participants {
   height: 70px;
@@ -45,6 +46,9 @@ select {
 .buttons {
   display: block;
   text-align: right;
+ button {
+cursor: pointer;
+}
 }
 
 .toast {

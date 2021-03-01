@@ -9,7 +9,6 @@ const participants = [
 ];
 
 let store = {};
-
 export const initStore = () => {
   store = {
     weekdays: [
@@ -31,10 +30,9 @@ export const initStore = () => {
       '18:00',
     ],
     people: [...participants],
-
-    events: [],
-    componentForRenderName: 'calendar',
+    componentForRenderName: 'loginWindow',
     filterSelectedId: 0,
+
   };
   eventEmitter.emit('storeChanged');
 };

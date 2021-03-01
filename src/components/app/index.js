@@ -1,17 +1,25 @@
 import { getField } from '../../store/index';
 import Calendar from '../calendar/index';
-import CreateEvent from '../create-event/index';
+import CreateEvent from '../createEvent/index';
+import LoginWindow from '../loginWindow/index';
+import notification from '../../Notification';
 
 export default class App {
     componentsMap = {
       calendar: new Calendar(),
       createEvent: new CreateEvent(),
+      loginWindow: new LoginWindow(),
     };
 
-    render() {
+    async render() {
       const component = this.componentsMap[getField('componentForRenderName')];
       if (component && component.render) {
-        document.getElementById('application').innerHTML = component.render();
+        try {
+          document.getElementById('application').innerHTML = await component.render();
+          notification.successfulResponseNotification();
+        } catch (err) {
+          notification.errorResponseNotification(err);
+        }
       }
       return '<div>Sorry, something went wrong!</div>';
     }

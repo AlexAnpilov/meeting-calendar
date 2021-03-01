@@ -1,5 +1,7 @@
 import CalendarEvent from '../../CalendarEvent';
+import service from '../../Service';
 import { getField, setField } from '../../store/index';
+import notification from '../../Notification';
 
 export default class CreateEvent {
   createToast() {
@@ -81,7 +83,7 @@ export default class CreateEvent {
     });
   }
 
-  settingNewEvent() {
+  async settingNewEvent() {
     this.eventObj = {};
     const eventTitle = document.getElementById('event-name').value;
     const eventParticipants = document.getElementById('participants').children;
@@ -106,21 +108,27 @@ export default class CreateEvent {
         eventTimeValue = +eventTimes[i].attributes.value.value;
       }
     }
-    const events = getField('events');
-    const event = (
-      events.find((ev) => ev.weekday === eventWeekdayValue && ev.timeslot === eventTimeValue));
-    if (event) {
-      const toast = document.querySelector('.toast');
-      toast.style.visibility = 'visible';
-    } else if (!eventTitle) {
-      const eventTitleInput = document.getElementById('event-name');
-      eventTitleInput.setAttribute('placeholder', 'Required field');
-      eventTitleInput.classList.add('empty-field');
-    } else {
-      this.eventObj = new CalendarEvent(eventTitle, eventTimeValue,
-        eventWeekdayValue, eventParticipantId);
-      setField('events', [...getField('events'), this.eventObj]);
-      setField('componentForRenderName', 'calendar');
+    try {
+      const events = await service.getEventsData('events/');
+      const event = (
+      events.find((e) => e.data.weekday === eventWeekdayValue && e.data.timeslot === eventTimeValue)
+      );
+      if (event) {
+        const toast = document.querySelector('.toast');
+        toast.style.visibility = 'visible';
+      } else if (!eventTitle) {
+        const eventTitleInput = document.getElementById('event-name');
+        eventTitleInput.setAttribute('placeholder', 'Required field');
+        eventTitleInput.classList.add('empty-field');
+      } else {
+        this.eventObj = new CalendarEvent(eventTitle, eventTimeValue,
+          eventWeekdayValue, eventParticipantId);
+        await service.setEvent('events', this.eventObj);
+        setField('componentForRenderName', 'calendar');
+      }
+      notification.successfulResponseNotification();
+    } catch (err) {
+      notification.errorResponseNotification(err);
     }
   }
 
@@ -131,6 +139,7 @@ export default class CreateEvent {
 
   render() {
     return `
+    <p class="server-notification">A connection was successfully established with the server</p>
     <div class="create-event">
        ${this.createToast()}
       <form>

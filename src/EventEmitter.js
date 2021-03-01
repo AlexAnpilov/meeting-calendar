@@ -23,8 +23,8 @@ class EventEmitter {
 const eventEmitter = new EventEmitter();
 
 // setup our listeners for event Emitter
-eventEmitter.on('storeChanged', () => {
-  appComponent.render();
+eventEmitter.on('storeChanged', async () => {
+  await appComponent.render();
   setTimeout(appComponent.setupPageListeners.call(appComponent), 1);
 });
 

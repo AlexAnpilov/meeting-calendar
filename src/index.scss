@@ -1,6 +1,24 @@
 @import './components/calendar/index.scss';
-@import './components/create-event/index.scss';
-
+@import './components/createEvent/index.scss';
+@import './components/loginWindow/index.scss';
 body {
   background-color: honeydew;
+}
+
+.server-notification {
+  visibility: hidden;
+  width: 30%;
+  height: 5px;
+  line-height: 3px;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(21, 255, 0, 0.562);
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.err {
+  background-color:rgba(255, 0, 0, 0.329);
+  visibility: visible;
 }
