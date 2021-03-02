@@ -13,14 +13,18 @@ export default class App {
 
     async render() {
       const component = this.componentsMap[getField('componentForRenderName')];
-      if (component && component.render) {
+
+      if (component instanceof Calendar) {
         try {
           document.getElementById('application').innerHTML = await component.render();
           notification.successfulResponseNotification();
         } catch (err) {
           notification.errorResponseNotification(err);
         }
+      } else if (component && component.render) {
+        document.getElementById('application').innerHTML = await component.render();
       }
+
       return '<div>Sorry, something went wrong!</div>';
     }
 

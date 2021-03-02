@@ -111,7 +111,7 @@ export default class CreateEvent {
     try {
       const events = await service.getEventsData('events/');
       const event = (
-      events.find((e) => e.data.weekday === eventWeekdayValue && e.data.timeslot === eventTimeValue)
+        events.find((e) => e.data.weekday === eventWeekdayValue && e.data.timeslot === eventTimeValue)
       );
       if (event) {
         const toast = document.querySelector('.toast');
