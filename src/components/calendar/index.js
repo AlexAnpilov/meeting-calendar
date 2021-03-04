@@ -1,6 +1,6 @@
-import service from '../../Service';
+import service from '../../service/Service';
 import { getField, setField } from '../../store/index';
-import notification from '../../Notification';
+import TryCatchDecorator from '../../service/TryCatchDecorator';
 
 export default class Calendar {
   static adminMode = null;
@@ -80,28 +80,24 @@ export default class Calendar {
     });
   }
 
+  @TryCatchDecorator
   async deleteEvent(browserEvent) {
-    try {
-      this.events = await service.getEventsData('events');
-      const deleteEventMessage = document.getElementById('delete-message');
-      const deleteEventTitleMessage = document.getElementById('delete-title');
-      const eventTitle = browserEvent.target.parentNode.attributes.value.value;
-      deleteEventTitleMessage.innerHTML = eventTitle;
-      deleteEventMessage.style.display = 'block';
-      const cancelDelete = document.getElementById('cancel-delete');
-      const сonfirmDelete = document.getElementById('confirm-delete');
-      cancelDelete.addEventListener('click', () => {
-        deleteEventMessage.style.display = 'none';
-      });
-      сonfirmDelete.addEventListener('click', async () => {
-        await service.deleteEvent(`events/${browserEvent.target.attributes.id.value}`);
-        deleteEventMessage.style.display = 'none';
-        setField('componentForRenderName', 'calendar');
-      });
-      notification.successfulResponseNotification();
-    } catch (err) {
-      notification.errorResponseNotification(err);
-    }
+    this.events = await service.getEventsData('/events/');
+    const deleteEventMessage = document.getElementById('delete-message');
+    const deleteEventTitleMessage = document.getElementById('delete-title');
+    const eventTitle = browserEvent.target.parentNode.attributes.value.value;
+    deleteEventTitleMessage.innerHTML = eventTitle;
+    deleteEventMessage.style.display = 'block';
+    const cancelDelete = document.getElementById('cancel-delete');
+    const сonfirmDelete = document.getElementById('confirm-delete');
+    cancelDelete.addEventListener('click', () => {
+      deleteEventMessage.style.display = 'none';
+    });
+    сonfirmDelete.addEventListener('click', async () => {
+      await service.deleteEvent(`events/${browserEvent.target.attributes.id.value}`);
+      deleteEventMessage.style.display = 'none';
+      setField('componentForRenderName', 'calendar');
+    });
   }
 
   async filterEvent() {

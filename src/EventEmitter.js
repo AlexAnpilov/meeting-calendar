@@ -24,7 +24,7 @@ const eventEmitter = new EventEmitter();
 
 // setup our listeners for event Emitter
 eventEmitter.on('storeChanged', async () => {
-  await appComponent.render();
+  await appComponent.checkComponentForRender();
   setTimeout(appComponent.setupPageListeners.call(appComponent), 1);
 });
 

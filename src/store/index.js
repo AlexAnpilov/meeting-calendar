@@ -1,6 +1,6 @@
 import eventEmitter from '../EventEmitter';
-import Admin from '../Admin';
-import User from '../User';
+import Admin from '../participants/Admin';
+import User from '../participants/User';
 
 const participants = [
   new Admin('Alex'),

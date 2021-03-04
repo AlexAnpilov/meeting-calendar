@@ -1,6 +1,13 @@
 class Service {
     apiBase = 'http://158.101.166.74:8080/api/data/anpilov_a/'
 
+    constructor() {
+      if (Service.instance) {
+        return Service.instance;
+      }
+      Service.instance = this;
+    }
+
     async getEventsData(url) {
       const res = await fetch(`${this.apiBase}${url}`);
       if (!res.ok) {

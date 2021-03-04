@@ -2,7 +2,7 @@ import { getField } from '../../store/index';
 import Calendar from '../calendar/index';
 import CreateEvent from '../createEvent/index';
 import LoginWindow from '../loginWindow/index';
-import notification from '../../Notification';
+import TryCatchDecorator from '../../service/TryCatchDecorator';
 
 export default class App {
     componentsMap = {
@@ -11,21 +11,20 @@ export default class App {
       loginWindow: new LoginWindow(),
     };
 
-    async render() {
+    checkComponentForRender() {
       const component = this.componentsMap[getField('componentForRenderName')];
-
       if (component instanceof Calendar) {
-        try {
-          document.getElementById('application').innerHTML = await component.render();
-          notification.successfulResponseNotification();
-        } catch (err) {
-          notification.errorResponseNotification(err);
-        }
-      } else if (component && component.render) {
-        document.getElementById('application').innerHTML = await component.render();
+        return this.calendarRender();
+      } if (component && component.render) {
+        document.getElementById('application').innerHTML = component.render();
       }
+      return '<div>Sorry something went wrong</div>';
+    }
 
-      return '<div>Sorry, something went wrong!</div>';
+    @TryCatchDecorator
+    async calendarRender() {
+      const component = this.componentsMap[getField('componentForRenderName')];
+      document.getElementById('application').innerHTML = await component.render();
     }
 
     setupPageListeners() {
