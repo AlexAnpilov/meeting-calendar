@@ -13,7 +13,16 @@ To install the project, please download it or clone, after load node modules of 
 
 To start the server: 
 
-***npm run server***
+***npm run start***
+
+To generate a development build: 
+
+***npm run dev***
+
+To generate a production build: 
+
+***npm run build*** 
+
 
 ### This project uses technologies: 
 
