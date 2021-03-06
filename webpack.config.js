@@ -1,49 +1,77 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const devMode = process.env.NODE_ENV === 'development';
+const prodMode = !devMode;
 
 module.exports = {
-    mode: 'development',
-    entry: './src/index',
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'calendar.js',
-        publicPath: '/dist/'
-    },
-    devtool: 'inline-source-map',
-    devServer: {
-        contentBase: './dist',
-    },
-    module: {
-        rules: [
-            {
-                test: /\.m?js$/,
-                exclude: /(node_modules|bower_components)/,
+  target: 'web',
+  context: path.resolve(__dirname, './src'),
+  mode: 'development',
 
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env', {
-                            "plugins": [
-                                "@babel/plugin-transform-runtime",
-                                [
-                                  "@babel/plugin-proposal-decorators",
-                                  {
-                                    "legacy": true
-                                  }
-                                ],
-                                ["@babel/plugin-proposal-class-properties", { "loose": true }]
-                              ]
-                        }]
-                    }
-                }
+  entry: {
+    app: path.join(__dirname, './src/index.js'),
+  },
+
+  output: {
+    path: path.resolve(__dirname, './build'),
+    filename: 'calendar.js',
+  },
+
+  devServer: {
+    contentBase: path.join(__dirname, './build'),
+    open: true,
+    compress: true,
+    hot: true,
+    port: 3000,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, './src/index.html'),
+      filename: 'index.html',
+      minify: {
+        collapseWhitespace: prodMode,
+      },
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'styles.css',
+    }),
+  ],
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.html$/,
+        loader: 'html-loader',
+      },
+      {
+        test: /\.js$/,
+        exclude: [/node_modules/],
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+
+      {
+        test: /\.css$/i,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: devMode,
             },
-            {
-                test: /.*\.scss$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader',
-                ],
-            },
-        ]
-    }
-}
+          },
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.s[ac]ss$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      },
+    ],
+  },
+};
