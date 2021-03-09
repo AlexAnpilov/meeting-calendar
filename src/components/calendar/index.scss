@@ -8,19 +8,6 @@
   margin: auto;
 }
 
-.header {
-  display: flex;
-  h1 {
-    margin-bottom: 5px;
-  }
-
-  .filter {
-    margin-left: auto;
-    margin-top: auto;
-    margin-bottom: 5px;
-  }
-}
-
 .filter {
   %button-sizes {
     width: 150px;
@@ -34,6 +21,20 @@
     @extend %button-sizes;
   }
 }
+
+.header {
+  display: flex;
+  h1 {
+    margin-bottom: 5px;
+  }
+
+  .filter {
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: 5px;
+  }
+}
+
 .calendar {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -82,6 +83,33 @@
     padding: 15px;
   }
 }
+.delete-button {
+  display: block;
+  visibility: hidden;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 15px;
+  right: 0;
+  padding: 0;
+  color: rgb(214, 14, 14);
+  font-weight: bolder;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.delete-button:focus {
+  outline: none;
+  background-color: rgba(197, 100, 100, 0.664);
+}
+
+.active-event:hover {
+  .delete-button {
+    visibility: visible;
+  }
+}
 
 #events-body {
   grid-area: e;
@@ -114,32 +142,7 @@
     vertical-align: middle;
   }
 }
-.delete-button {
-  display: block;
-  visibility: hidden;
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: 15px;
-  right: 0;
-  padding: 0;
-  color: rgb(214, 14, 14);
-  font-weight: bolder;
-  background-color: #ffffff;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-}
 
-.active-event:hover {
-  .delete-button {
-    visibility: visible;
-  }
-}
-.delete-button:focus {
-  outline: none;
-  background-color: rgba(197, 100, 100, 0.664);
-}
 #delete-message {
   display: none;
   position: absolute;
