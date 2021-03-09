@@ -11,13 +11,7 @@ const participants = [
 let store = {};
 export const initStore = () => {
   store = {
-    weekdays: [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-    ],
+    weekdays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
     timeslots: [
       '10:00',
       '11:00',
@@ -32,7 +26,6 @@ export const initStore = () => {
     people: [...participants],
     componentForRenderName: 'loginWindow',
     filterSelectedId: 0,
-
   };
   eventEmitter.emit('storeChanged');
 };

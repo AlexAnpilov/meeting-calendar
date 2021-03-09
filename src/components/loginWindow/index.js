@@ -26,7 +26,11 @@ export default class LoginWindow {
   loginEvent() {
     this.people = getField('people');
     const selectedLoginHumanId = document.getElementById('login-select').value;
-    if (!this.people.find((human) => human.id === +selectedLoginHumanId && human.admin)) {
+    if (
+      !this.people.find(
+        (human) => human.id === +selectedLoginHumanId && human.admin
+      )
+    ) {
       Calendar.adminMode = false;
     } else {
       Calendar.adminMode = true;

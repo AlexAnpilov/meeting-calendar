@@ -18,12 +18,16 @@ export default class Calendar {
     const filterSelectedId = getField('filterSelectedId');
     this.options = '';
     people.forEach((human) => {
-      this.options += `<option ${filterSelectedId === human.id ? 'selected' : ''} value='${human.id}'>${human.name}</option>`;
+      this.options += `<option ${
+        filterSelectedId === human.id ? 'selected' : ''
+      } value='${human.id}'>${human.name}</option>`;
     });
 
     return `
         <select id="participants-filter">
-            <option value='0' ${filterSelectedId === 0 ? 'selected' : ''}>All members</option>
+            <option value='0' ${
+              filterSelectedId === 0 ? 'selected' : ''
+            }>All members</option>
             ${this.options}
         </select>
         <button id="new-event" style=${this.modeStyle}>New event +</button>
@@ -55,7 +59,9 @@ export default class Calendar {
     this.result = '';
     for (let i = 0; i < 9; i += 1) {
       for (let j = 0; j < 5; j += 1) {
-        const event = events.find((ev) => ev.data.weekday === j && ev.data.timeslot === i);
+        const event = events.find(
+          (ev) => ev.data.weekday === j && ev.data.timeslot === i
+        );
         if (event) {
           this.result += `<div class="active-event" value="${event.data.title}"> ${event.data.title}
                     <button class="delete-button" id='${event.id}' style=${this.modeStyle}>X</button></div>`;
@@ -71,7 +77,9 @@ export default class Calendar {
     const newEventButton = document.getElementById('new-event');
     const filterPeopleSelect = document.getElementById('participants-filter');
     const deleteEventButtons = document.querySelectorAll('.delete-button');
-    newEventButton.addEventListener('click', () => setField('componentForRenderName', 'createEvent'));
+    newEventButton.addEventListener('click', () =>
+      setField('componentForRenderName', 'createEvent')
+    );
     for (let i = 0; i < deleteEventButtons.length; i += 1) {
       deleteEventButtons[i].addEventListener('click', this.deleteEvent);
     }
@@ -94,7 +102,9 @@ export default class Calendar {
       deleteEventMessage.style.display = 'none';
     });
     сonfirmDelete.addEventListener('click', async () => {
-      await service.deleteEvent(`events/${browserEvent.target.attributes.id.value}`);
+      await service.deleteEvent(
+        `events/${browserEvent.target.attributes.id.value}`
+      );
       deleteEventMessage.style.display = 'none';
       setField('componentForRenderName', 'calendar');
     });
@@ -106,8 +116,9 @@ export default class Calendar {
     if (filterSelectedId === 0) {
       return events;
     }
-    this.filteredEvents = (
-      events.filter((ev) => ev.data.participantsId.some((id) => id === filterSelectedId)));
+    this.filteredEvents = events.filter((ev) =>
+      ev.data.participantsId.some((id) => id === filterSelectedId)
+    );
     return this.filteredEvents;
   }
 

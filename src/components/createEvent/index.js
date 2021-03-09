@@ -111,8 +111,10 @@ export default class CreateEvent {
     }
 
     const events = await service.getEventsData('/events/');
-    const event = (
-      events.find((e) => e.data.weekday === eventWeekdayValue && e.data.timeslot === eventTimeValue)
+    const event = events.find(
+      (e) =>
+        e.data.weekday === eventWeekdayValue &&
+        e.data.timeslot === eventTimeValue
     );
     if (event) {
       const toast = document.querySelector('.toast');
@@ -122,8 +124,12 @@ export default class CreateEvent {
       eventTitleInput.setAttribute('placeholder', 'Required field');
       eventTitleInput.classList.add('empty-field');
     } else {
-      this.eventObj = new CalendarEvent(eventTitle, eventTimeValue,
-        eventWeekdayValue, eventParticipantId);
+      this.eventObj = new CalendarEvent(
+        eventTitle,
+        eventTimeValue,
+        eventWeekdayValue,
+        eventParticipantId
+      );
       await service.setEvent('events', this.eventObj);
       setField('componentForRenderName', 'calendar');
     }

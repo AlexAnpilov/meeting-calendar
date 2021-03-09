@@ -1,6 +1,6 @@
 module.exports = {
-  parser: "@babel/eslint-parser",
-  extends: ["airbnb-base", "prettier"],
+  parser: '@babel/eslint-parser',
+  extends: ['airbnb-base', 'prettier'],
   env: {
     browser: true,
   },
@@ -9,8 +9,8 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    "import/no-cycle": 0,
-    "no-param-reassign": 0,
-    "func-names": "off",
-  }
+    'import/no-cycle': 0,
+    'no-param-reassign': 0,
+    'func-names': 'off',
+  },
 };
