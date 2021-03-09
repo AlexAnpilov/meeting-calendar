@@ -9,11 +9,10 @@ module.exports = {
   target: 'web',
   context: path.resolve(__dirname, './src'),
   mode: 'development',
-
   entry: {
     app: path.join(__dirname, './src/index.js'),
   },
-
+  devtool: prodMode ? 'source-map' : 'eval-cheap-module-source-map',
   output: {
     path: path.resolve(__dirname, './build'),
     filename: 'calendar.js',
