@@ -1,5 +1,5 @@
 export default class User {
-  static counterId = 1;
+  static counterId = 0;
 
   constructor(name) {
     User.counterId += 1;
