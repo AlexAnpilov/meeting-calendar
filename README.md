@@ -37,3 +37,6 @@ This application uses JavaScript Testing Framework [Jest](https://jestjs.io/).
 
 JavaScript code lintered with [airbnb/javascript](https://github.com/airbnb/javascript) style guide.
 (To check it use the command: ***npm run lint***)
+
+SCSS code lintered with [stylelint](https://stylelint.io/) style guide.
+(To check it use the command: ***npm run stylelint***)
