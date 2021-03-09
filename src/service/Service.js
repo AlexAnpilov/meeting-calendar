@@ -11,7 +11,7 @@ class Service {
   async getEventsData(url) {
     const res = await fetch(`${this.apiBase}${url}`);
     if (!res.ok) {
-      throw new Error(`Could not fetch ${url}` + `, received ${res.status}`);
+      throw new Error(`Could not fetch ${url}, received ${res.status}`);
     }
     const eventsData = await res.json();
     return eventsData === null
@@ -27,7 +27,7 @@ class Service {
       method: 'DELETE',
     });
     if (!res.ok) {
-      throw new Error(`Could not fetch ${url}` + `, received ${res.status}`);
+      throw new Error(`Could not fetch ${url}, received ${res.status}`);
     }
   }
 
@@ -37,7 +37,7 @@ class Service {
       body: JSON.stringify({ data: JSON.stringify(body) }),
     });
     if (!res.ok) {
-      throw new Error(`Could not fetch ${url}` + `, received ${res.status}`);
+      throw new Error(`Could not fetch ${url}, received ${res.status}`);
     }
   }
 }

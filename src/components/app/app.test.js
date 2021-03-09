@@ -2,6 +2,7 @@ import appComponent from './index';
 import Calendar from '../calendar/index';
 import LoginWindow from '../loginWindow';
 import CreateEvent from '../createEvent';
+
 describe('Check component for render', () => {
   const app = appComponent.componentsMap;
   let componentForRenderName = 'calendar';
