@@ -90,7 +90,7 @@ export default class Calendar {
 
   @TryCatchDecorator
   async deleteEvent(browserEvent) {
-    this.events = await service.getEventsData('/events/');
+    this.events = await service.getEventsData('events/');
     const deleteEventMessage = document.getElementById('delete-message');
     const deleteEventTitleMessage = document.getElementById('delete-title');
     const eventTitle = browserEvent.target.parentNode.attributes.value.value;

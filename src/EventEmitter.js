@@ -1,6 +1,4 @@
-import App from './components/app/index';
-
-const appComponent = new App();
+import appComponent from './components/app/index';
 
 class EventEmitter {
   constructor() {
