@@ -32,5 +32,8 @@ To generate a production build:
 
 [Babel](https://babeljs.io/) - JavaScript compiler.
 
+This application uses JavaScript Testing Framework [Jest](https://jestjs.io/).
+(To check tests use the command: ***npm test***)
+
 JavaScript code lintered with [airbnb/javascript](https://github.com/airbnb/javascript) style guide.
-(To check it use command: ***npm run lint***)
+(To check it use the command: ***npm run lint***)
