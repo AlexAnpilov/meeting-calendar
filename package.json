@@ -35,6 +35,9 @@
     "node-sass": "^5.0.0",
     "prettier": "^2.2.1",
     "sass-loader": "^11.0.0",
+    "stylelint": "^13.12.0",
+    "stylelint-config-recommended-scss": "^4.2.0",
+    "stylelint-scss": "^3.19.0",
     "terser-webpack-plugin": "^5.1.1",
     "webpack": "^5.24.3",
     "webpack-cli": "^4.5.0",
@@ -48,7 +51,9 @@
     "deploy": "gh-pages -d build",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
-    "test": "jest"
+    "test": "jest",
+    "stylelint": "stylelint \"./src/**/*.scss\"",
+    "stylelint:fix": "stylelint \"./src/**/*.scss\" --fix"
   },
   "jest": {
     "automock": false,
